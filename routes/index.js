@@ -20,3 +20,7 @@ router.get('/', homeController.home);
 
 // to check whether this page is on or not
 console.log('Router is Loaded');
+
+
+// in the browser if any request comes with /users then just require my neighbour which is 
+router.use('/users',require('./users'));
