@@ -15,6 +15,20 @@ app.set('views', './views');
 
 
 
+// setting up the middleware
+app.use(express.urlencoded());
+
+
+
+
+// for reading and writing in to cookies we will be using a library or a package called cookie-parser
+// npm install cookie-parser
+
+// first require the cookie-parser
+const cookieParser=require('cookie-parser');
+// now we have to tell the app to use it
+app.use(cookieParser());
+
 
 
 
