@@ -1,0 +1,12 @@
+body{
+    text-align: center;
+    background-color: green;
+}
+input{
+    border: 5px solid black;
+    font-size: 30px;
+
+}
+input #btn{
+    display: inline-block;
+}
