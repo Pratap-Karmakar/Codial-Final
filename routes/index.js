@@ -11,8 +11,6 @@ const homeController = require('../controller/home_controller');
 const router = express.Router();
 
 
-// we have to exports this index.js of the routes folder to be available in the the main index.js
-module.exports = router;
 
 
 // so now we cssn access the action of home_controller
@@ -24,3 +22,7 @@ console.log('Router is Loaded');
 
 // in the browser if any request comes with /users then just require my neighbour which is 
 router.use('/users',require('./users'));
+
+
+// we have to exports this index.js of the routes folder to be available in the the main index.js
+module.exports = router;

@@ -7,6 +7,8 @@ module.exports.home = function (req, res) {
     // return res.end('<h1> Express is up for codial </h1>');
 
     // this is how we reander an another page by passing it's name and the title of that rendered page
+
+    // this is the default home page
     return res.render('home', {
         title: 'Home'
     });

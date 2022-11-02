@@ -2,17 +2,18 @@
 
 const mongoose = require('mongoose');
 const userSchema = new mongoose.Schema({
+    // ********************* here String's  'S'   should be in capital, otherwise the cose will not work **************************
     email: {
-        type: string,
+        type: String,
         required: true,
         unique: true
     },
-    name: {
-        type: string,
+    password: {
+        type: String,
         required: true
     },
-    password: {
-        type: string,
+    name: {
+        type: String,
         required: true
     }
 }, {
@@ -29,3 +30,30 @@ const User = mongoose.model('User', userSchema);
 
 // weneed to export thios page
 module.exports = User;
+
+
+
+// const mongoose = require('mongoose');
+
+// const userSchema = new mongoose.Schema({
+//     email: {
+//         type: String,
+//         required: true,
+//         unique: true
+//     },
+//     password: {
+//         type: String,
+//         required: true
+//     },
+//     name: {
+//         type: String,
+//         required: true
+//     }
+// }, {
+//     timestamps: true
+// });
+
+
+// const User = mongoose.model('User', userSchema);
+
+// module.exports = User;
