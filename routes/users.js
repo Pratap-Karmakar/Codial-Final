@@ -30,8 +30,8 @@ router.get('/sign-in', usersController.signIn);
 router.get('/sign-up', usersController.signUp);
 // to create a new user
 router.post('/create', usersController.create);
-
-
+// for the sign in page
+router.post('/create-session',usersController.createSession);
 
 // this page is exported and accessable by the main index.js of routes....and the route's index.js is exported further which is accessable by the main index.js
 module.exports = router;
