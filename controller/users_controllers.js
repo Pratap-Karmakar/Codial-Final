@@ -1,4 +1,5 @@
 // to import the user's schema/details
+const { exists } = require('../models/user');
 const User = require('../models/user');
 
 
@@ -64,3 +65,5 @@ module.exports.signIn = function (req, res) {
 module.exports.createSession = function (req, res) {
 
 }
+
+
