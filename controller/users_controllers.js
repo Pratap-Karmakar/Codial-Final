@@ -49,8 +49,7 @@ module.exports.create = function (req, res) {
         else {
             return res.redirect('back');
         }
-
-    })
+    });
 }
 
 
@@ -63,7 +62,8 @@ module.exports.signIn = function (req, res) {
 }
 // to get the sign_in data
 module.exports.createSession = function (req, res) {
-
+    // the user is signed in we just need to redirect
+    return res.redirect('/');
 }
 
 

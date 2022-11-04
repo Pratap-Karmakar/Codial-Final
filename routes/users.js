@@ -3,6 +3,7 @@
 // const app = require('express');
 const express = require('express');
 const router = express.Router();
+const passport=require('passport');
 
 
 
@@ -30,6 +31,14 @@ router.get('/sign-in', usersController.signIn);
 router.get('/sign-up', usersController.signUp);
 // to create a new user
 router.post('/create', usersController.create);
+
+// use passport as a middleware to authenticate
+router.post('/create-session',
+// middleware 
+// passport first authenticate it if the authenticate is cool/done then done returns the user the call back function and if the authenticate is not cool/done the it redirect it to the sign-in page
+passport.authenticate('local',{failureRedirect: '/users/sign-in'}), 
+// so if the authenticate is done then the createSession function is called
+usersController.createSession);
 
 
 
