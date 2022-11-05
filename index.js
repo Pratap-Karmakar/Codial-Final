@@ -15,6 +15,11 @@ const passport=require('passport');
 const passportLocal=require('./config/passport-local-strategy');
 
 
+// connect-mongo, in this case one argument has to be passed here which is session
+const MongoStore = require('connect-mongo');
+
+
+
 
 
 // setting up the middleware
@@ -52,6 +57,9 @@ app.set('view engine', 'ejs');
 app.set('views', './views');
 
 
+
+// mongo store is used to store the session cookie in the db
+
 //  now we need to add amiddleware which takes in that session cookie and encrypts it.
 app.use(session({
     name: 'codial',
@@ -64,7 +72,17 @@ app.use(session({
     // so here we have to give the active time or age of the cookie, means how long the cookie will work and afthe the age or time the cookie expire 
     cookie: {
         maxAge: (1000 * 60 *100)
-    }
+    },
+    store:  MongoStore.create ({
+        
+        mongoUrl:`mongodb://localhost/codeial_development`,
+        autoRemove:'disabled'
+    
+},
+        function(err){
+            console.log(err ||  'connect-mongodb setup ok');
+        }
+    )
 }));
 
 

@@ -18,6 +18,10 @@ module.exports.profile = function (req, res) {
 
 // to render the sign_up page
 module.exports.signUp = function (req, res) {
+    // if(req.isAuthenticated() this will take the user to the profile page if he sign in even if he wants to go to the sign in or sign up page.
+    if(req.isAuthenticated()){
+     return res.redirect('/users/profile');
+    }
     return res.render('user_sign_up', {
         title: 'Sign Up'
     })
@@ -54,6 +58,10 @@ module.exports.create = function (req, res) {
 
 // to render the sign_in page
 module.exports.signIn = function (req, res) {
+    // if(req.isAuthenticated() this will take the user to the profile page if he sign in even if he wants to go to the sign in or sign up page.
+    if(req.isAuthenticated()){
+        return res.redirect('/users/profile');
+    }
     return res.render('user_sign_in', {
         title: 'Sign In'
     })
