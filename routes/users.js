@@ -23,8 +23,8 @@ const usersController = require('../controller/users_controllers');
 // rendering the pages
 
 
-// to render the profile page in the browser
-router.get('/profile', usersController.profile);
+// to render the profile page in the browser only if the authentication is done, means the user is logged in
+router.get('/profile', passport.checkAuthentication, usersController.profile);
 // to render the sign-in page in the browser
 router.get('/sign-in', usersController.signIn);
 //to render the sign-up page in the browswer
@@ -44,4 +44,8 @@ usersController.createSession);
 
 // this page is exported and accessable by the main index.js of routes....and the route's index.js is exported further which is accessable by the main index.js
 module.exports = router;
+
+
+
+
 

@@ -38,7 +38,7 @@ app.use(cookieParser());
 
 
 // so as we've exported the express router in the index.js which is in the router folder, now we have to tell app to use it.
-// const routes = require('./routes');
+const routes = require('./routes');
 // app.use('/', routes);
 
 
@@ -57,7 +57,9 @@ app.use(session({
     name: 'codial',
     // TODO chane the secret before deployment in production mode
     secret: 'blashsomething',
+    // if any user is not logged means the ideantity is not established in do i need to save his data we don't that's why it is false
     saveUninitialized:'false',
+    // if the identity is established or some sort of data is present in the session cookie means the user's info, do i need to rewrite the data even if it is not changed, we don't that's why it is false.
     resave:'false',
     // so here we have to give the active time or age of the cookie, means how long the cookie will work and afthe the age or time the cookie expire 
     cookie: {
@@ -69,6 +71,10 @@ app.use(session({
 // now we need to tell the app to use passport
 app.use(passport.initialize());
 app.use(passport.session());
+
+// set the user for the views(p-l-s)
+// app.use(passport.setAuthenticatedUser);
+app.use(passport.setAuthenticatedUser);
 
 
 
@@ -89,4 +95,8 @@ app.listen(port, function (error) {
         console.log(`Server is running on, ${port}`);
     }
 });
+
+
+
+
 

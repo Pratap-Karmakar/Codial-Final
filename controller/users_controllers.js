@@ -1,5 +1,5 @@
 // to import the user's schema/details
-const { exists } = require('../models/user');
+// const { exists } = require('../models/user');
 const User = require('../models/user');
 
 
@@ -10,8 +10,6 @@ module.exports.profile = function (req, res) {
         title: 'User Profile'
     })
 }
-
-
 
 
 
@@ -65,5 +63,6 @@ module.exports.createSession = function (req, res) {
     // the user is signed in we just need to redirect
     return res.redirect('/');
 }
+
 
 
