@@ -1,6 +1,8 @@
 const express = require('express');
 const app = express();
 const port = 8000;
+// to add css styles we call express-ejs-layouts
+// const expressLayouts=require('express-ejs-layouts');
 // we have to import database mongoose
 const db = require('./config/mongoose');
 // after installing express-session we need to require it
@@ -25,6 +27,11 @@ const MongoStore = require('connect-mongo');
 // setting up the middleware
 app.use(express.urlencoded());
 
+// telling the app to use the assets file
+// app.use(expressLayouts);
+
+
+
 
 
 // use cookie-parser
@@ -37,7 +44,7 @@ app.use(cookieParser());
 
 
 
-// app.use(express.static('./assets'));
+app.use(express.static('./assets'));
 
 
 
