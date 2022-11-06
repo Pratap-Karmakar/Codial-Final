@@ -39,6 +39,8 @@ router.post('/create-session',
 passport.authenticate('local',{failureRedirect: '/users/sign-in'}), 
 // so if the authenticate is done then the createSession function is called
 usersController.createSession);
+// for the sign-outt function
+router.get('/sign-out', usersController.destroySession);
 
 
 
