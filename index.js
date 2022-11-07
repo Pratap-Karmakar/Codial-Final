@@ -1,8 +1,10 @@
 const express = require('express');
+// use cookie-parser
+const cookieParser = require('cookie-parser');
 const app = express();
 const port = 8000;
 // to add css styles we call express-ejs-layouts
-// const expressLayouts=require('express-ejs-layouts');
+const expressLayouts=require('express-ejs-layouts');
 // we have to import database mongoose
 const db = require('./config/mongoose');
 // after installing express-session we need to require it
@@ -19,7 +21,16 @@ const passportLocal=require('./config/passport-local-strategy');
 
 // connect-mongo, in this case one argument has to be passed here which is session
 const MongoStore = require('connect-mongo');
+const sassMiddleware= require('node-sass-middleware');
 
+
+app.use(sassMiddleware({
+    src: './assets/scss',
+    dest: './assets/css',
+    debug: true,
+    outputStyle: 'extended',
+    prefix: '/css'
+}))
 
 
 
@@ -28,14 +39,12 @@ const MongoStore = require('connect-mongo');
 app.use(express.urlencoded());
 
 // telling the app to use the assets file
-// app.use(expressLayouts);
+app.use(expressLayouts);
 
 
 
 
 
-// use cookie-parser
-const cookieParser = require('cookie-parser');
 // now tell the app to use cookie-parser
 app.use(cookieParser());
 
@@ -43,16 +52,17 @@ app.use(cookieParser());
 
 
 
-
+// to use the css files
 app.use(express.static('./assets'));
 
 
 
 
-// so as we've exported the express router in the index.js which is in the router folder, now we have to tell app to use it.
-const routes = require('./routes');
-// app.use('/', routes);
-
+// now we need to tell the app to use express layouts
+app.use(expressLayouts);
+// extract style and scripts from sub pages into the layout
+app.set('layout extractStyles', true);
+app.set('layout extractScripts', true);
 
 
 
@@ -84,11 +94,11 @@ app.use(session({
         
         mongoUrl:`mongodb://localhost/codeial_development`,
         autoRemove:'disabled'
-    
-},
-        function(err){
-            console.log(err ||  'connect-mongodb setup ok');
-        }
+        
+    },
+    function(err){
+        console.log(err ||  'connect-mongodb setup ok');
+    }
     )
 }));
 
@@ -108,6 +118,8 @@ app.use(passport.setAuthenticatedUser);
 // as we have exported the index.js of the routes folder so now we have to access that in this index.js folder
 app.use('/', require('./routes/index'));
 
+// // so as we've exported the express router in the index.js which is in the router folder, now we have to tell app to use it.
+// const routes = require('./routes');
 
 
 

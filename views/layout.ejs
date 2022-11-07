@@ -1,0 +1,29 @@
+<html>
+    <head>
+        <title>
+            <%= title  %>
+        </title>
+        <!-- here we save the styles in scss folder and with the scss extention but if we path/href which is /css and with the extention css it will work as well and when we go to the browser and open out website the scss files will autometically comes in the css folder with the extention css. -->
+
+        <link rel="stylesheet" href="css/layout.css">
+        <link rel="stylesheet" href="css/header.css">
+        <link rel="stylesheet" href="css/footer.css">
+
+        <%- style %>
+        
+    </head>
+
+    <body>
+        <%- include('_header'); %>
+
+        <main id="layout-main">
+            <%- body %>
+        </main>
+
+
+        <%- include('_footer'); %>
+
+        <%- script %>
+        
+    </body>
+</html>
