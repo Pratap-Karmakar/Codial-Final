@@ -1,0 +1,23 @@
+*{
+    margin:0px;
+}
+    #div2 li a{
+    color: orange;
+}
+// #div2{
+//     display: inline;
+// }
+#div2 li{
+    list-style-type: none;
+    display: inline-block;
+    margin-top: 0px;
+}
+#box{
+    display: flex;
+    height: 50px;
+    width: 100%;
+    justify-content: space-between;
+}
+#div1{
+    display: inline-block;
+}
