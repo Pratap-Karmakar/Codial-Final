@@ -1,6 +1,5 @@
 // every time when we create a controller(users.js) we have to create a route so that we can access that controller(user_controller.js)
 
-// const app = require('express');
 const express = require('express');
 const router = express.Router();
 const passport=require('passport');

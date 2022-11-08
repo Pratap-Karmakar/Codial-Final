@@ -21,7 +21,12 @@ console.log('Router is Loaded');
 
 
 // in the browser if any request comes with /users then just require my neighbour which is 
-router.use('/users',require('./users'));
+router.use('/users', require('./users'));
+
+// in the browser if any request come with /post the just require my neighbour which is 
+router.use('/posts', require('./posts'));
+
+
 
 
 // we have to exports this index.js of the routes folder to be available in the the main index.js
