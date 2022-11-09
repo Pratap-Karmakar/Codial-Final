@@ -16,6 +16,7 @@
 
 
 const Post =require('../models/post');
+const { patch } = require('../routes');
 
 // to save the data on the home page 
 module.exports.home=function(req,res){
@@ -28,7 +29,15 @@ module.exports.home=function(req,res){
 
 
     //populate the user of each posts, this will show the whole object of each user    
-    Post.find({}).populate('user').exec(function(err,posts){
+    Post.find({})
+    .populate('user')
+    .populate({
+        path: 'comments',
+        populate:{
+            path: 'user'
+        }
+    })
+    .exec(function(err,posts){
         return res.render('home',{
             title: "codial | Home",
             posts: posts
