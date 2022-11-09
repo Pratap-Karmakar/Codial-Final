@@ -26,6 +26,9 @@ router.use('/users', require('./users'));
 // in the browser if any request come with /post the just require my neighbour which is 
 router.use('/posts', require('./posts'));
 
+// in the browser if any request come with /comments the just require my neighbour which is
+router.use('/comments', require('./comments'));
+
 
 
 
