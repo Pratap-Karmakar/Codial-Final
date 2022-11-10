@@ -24,6 +24,8 @@ const usersController = require('../controller/users_controllers');
 
 // to render the profile page in the browser only if the authentication is done, means the user is logged in
 router.get('/profile/:id', passport.checkAuthentication, usersController.profile);
+// to update authorized logged in user
+router.post('/update/:id', passport.checkAuthentication, usersController.update);
 // to render the sign-in page in the browser
 router.get('/sign-in', usersController.signIn);
 //to render the sign-up page in the browswer
