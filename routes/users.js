@@ -23,7 +23,7 @@ const usersController = require('../controller/users_controllers');
 
 
 // to render the profile page in the browser only if the authentication is done, means the user is logged in
-router.get('/profile', passport.checkAuthentication, usersController.profile);
+router.get('/profile/:id', passport.checkAuthentication, usersController.profile);
 // to render the sign-in page in the browser
 router.get('/sign-in', usersController.signIn);
 //to render the sign-up page in the browswer

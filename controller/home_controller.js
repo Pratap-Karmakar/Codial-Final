@@ -16,7 +16,8 @@
 
 
 const Post =require('../models/post');
-// const { path } = require('../routes');
+const User=require('../models/user');
+
 
 // to save the data on the home page 
 module.exports.home=function(req,res){
@@ -38,9 +39,16 @@ module.exports.home=function(req,res){
         }
     })
     .exec(function(err,posts){
-        return res.render('home',{
-            title: "Codial | Home",
-            posts: posts
-        });
+
+        // to find all the users in the home page
+        User.find({}, function(err,users){
+            return res.render('home',{
+                title: "Codial | Home",
+                posts: posts,
+                // to get all the users available to us
+                all_users:users
+            });
+        })
+        
     })
 }

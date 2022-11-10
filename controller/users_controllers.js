@@ -6,8 +6,12 @@ const User = require('../models/user');
 
 // so now we have to export this page and the function
 module.exports.profile = function (req, res) {
-    return res.render('user_profile', {
-        title: 'User Profile'
+    // to locate the user for to show in the home page
+    User.findById(req.params.id, function(err,user){
+        return res.render('user_profile', {
+            title: 'User Profile',
+            profile_user:user
+        })
     })
 }
 
