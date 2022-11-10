@@ -16,7 +16,7 @@
 
 
 const Post =require('../models/post');
-const { patch } = require('../routes');
+// const { path } = require('../routes');
 
 // to save the data on the home page 
 module.exports.home=function(req,res){
@@ -39,7 +39,7 @@ module.exports.home=function(req,res){
     })
     .exec(function(err,posts){
         return res.render('home',{
-            title: "codial | Home",
+            title: "Codial | Home",
             posts: posts
         });
     })
