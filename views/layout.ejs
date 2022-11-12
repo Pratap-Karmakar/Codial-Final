@@ -3,6 +3,8 @@
         <title>
             <%= title  %>
         </title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js"></script>
         <!-- here we save the styles in scss folder and with the scss extention but if we path/href which is /css and with the extention css it will work as well and when we go to the browser and open out website the scss files will autometically comes in the css folder with the extention css. -->
 
         <link rel="stylesheet" href="css/layout.css">
@@ -16,11 +18,14 @@
     <body>
         <%- include('_header'); %>
 
-        <% if(flash.success && flash.success.length > 0) { %>
+        <!-- this massage will visible on the page under the header with no annimation just text -->
+        <!-- <% if(flash.success && flash.success.length > 0) { %>
             <h5>
                 <%= flash.success %>
             </h5>    
-        <% } %>
+        <% } %> -->
+
+        <!-- noty js annimation with text -->
 
         <main id="layout-main">
             <%- body %>
@@ -30,6 +35,28 @@
         <%- include('_footer'); %>
 
         <%- script %>
+
+        <script>
+        <% if (flash.success && flash.success.length > 0) { %>
+            new Noty({
+                theme: 'relax',
+                text: '<%= flash.success %>',
+                type: 'success',
+                layout: 'topRight',
+                timeout: 1500
+            }).show();
+        <% } %>
+
+        <% if (flash.error && flash.error.length > 0) { %>
+            new Noty({
+                theme: 'relax',
+                text: '<%= flash.error %>',
+                type: 'error',
+                layout: 'topRight',
+                timeout: 1500
+            }).show();
+        <% } %>
+        </script>
         
     </body>
 </html>
