@@ -8,7 +8,7 @@
 //     display: inline;
 // }
 #div2 li{
-    list-style-type: none;
+    // list-style-type: none;
     display: inline-block;
     margin-top: 0px;
 }
@@ -20,4 +20,10 @@
 }
 #div1{
     display: inline-block;
+}
+#sign-out {
+    list-style-type: none;
+    a{
+        text-decoration: none;
+    }
 }

@@ -1,19 +1,20 @@
 body{
-    text-align: center;
-    background-color: green;
+    // text-align: center;
+    background-color: rgb(244, 175, 241);
   
     #layout-main{
         height: 100%;
-        background-color: purple;
+        background-color: rgb(252, 229, 252);
     }
 
 }
 
 input{
-    border: 5px solid black;
-    font-size: 30px;
+    border: 2px solid black;
+    font-size: 10px;
 
 }
 input #btn{
     display: inline-block;
 }
+

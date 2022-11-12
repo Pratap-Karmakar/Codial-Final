@@ -23,6 +23,12 @@ const passportLocal=require('./config/passport-local-strategy');
 const MongoStore = require('connect-mongo');
 const sassMiddleware= require('node-sass-middleware');
 
+// for connect-flash massage
+const flash= require('connect-flash');
+
+// to require the middleware.js for the flash massage
+const customMware = require('./config/middleware');
+
 
 app.use(sassMiddleware({
     src: './assets/scss',
@@ -110,6 +116,12 @@ app.use(passport.session());
 // set the user for the views(p-l-s)
 // app.use(passport.setAuthenticatedUser);
 app.use(passport.setAuthenticatedUser);
+
+
+// we need to tell the app to use session
+app.use(flash());
+// now we need to use the middleware.js for the flash massage
+app.use(customMware.setFlash);
 
 
 

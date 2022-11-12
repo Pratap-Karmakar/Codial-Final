@@ -85,6 +85,7 @@ module.exports.signIn = function (req, res) {
 }
 // to get the sign_in data
 module.exports.createSession = function (req, res) {
+    req.flash('success','Logged in Successfully');
     // the user is signed in we just need to redirect
     return res.redirect('/');
 }
@@ -92,14 +93,15 @@ module.exports.createSession = function (req, res) {
 
 // sign-out function
 module.exports.destroySession=function(req,res){
+    req.flash('success','You have Logged out!');
     //to log out
-    req.logout(function(err){
+    req.logout
+    (function(err){
         if(err){
             return res.redirect('/');
         }
-        else{
+        req.flash('success','You have Logged out!');
         return res.redirect('/');
-        }
     })
 }
 

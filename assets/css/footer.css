@@ -5,4 +5,5 @@
   height: 50px; }
 
 #footer {
-  display: inline-block; }
+  display: inline-block;
+  list-style-type: none; }

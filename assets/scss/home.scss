@@ -1,0 +1,52 @@
+#home-container {
+    display: flex; }
+  
+  #feed-posts {
+    width: 70%;
+    padding: 10px;
+    h2{
+        text-align: center;
+        font-size: 2rem;
+        color: rgb(90, 9, 63);
+        border-bottom: 2px solid black;
+    }
+    form{
+        padding-top: 10px;
+        text-align: center;
+    }
+    input{
+        font-size: 1rem;
+        display: block;
+        justify-content: center;
+    }
+}
+  
+  #user-friend {
+    width: 30%;
+    padding: 10px;
+    border-left: 2px solid lightgrey;
+    height: 100%; 
+    text-align: center;
+    h4{
+        color: rgb(90, 9, 63);
+        font-size: 2rem;
+        border-bottom: 2px solid black;
+    }
+}
+  
+  #anything {
+    display: inline-block; 
+    justify-content: space-around;
+    text-decoration: none;
+    a{
+        text-decoration: none;
+        padding: 10px;
+        margin-top: 20%;
+        
+    }
+    a{
+        margin-top: 20px;
+    }
+    
+}
+  

@@ -1,0 +1,40 @@
+#home-container {
+  display: flex; }
+
+#feed-posts {
+  width: 70%;
+  padding: 10px; }
+  #feed-posts h2 {
+    text-align: center;
+    font-size: 2rem;
+    color: #5a093f;
+    border-bottom: 2px solid black; }
+  #feed-posts form {
+    padding-top: 10px;
+    text-align: center; }
+  #feed-posts input {
+    font-size: 1rem;
+    display: block;
+    justify-content: center; }
+
+#user-friend {
+  width: 30%;
+  padding: 10px;
+  border-left: 2px solid lightgrey;
+  height: 100%;
+  text-align: center; }
+  #user-friend h4 {
+    color: #5a093f;
+    font-size: 2rem;
+    border-bottom: 2px solid black; }
+
+#anything {
+  display: inline-block;
+  justify-content: space-around;
+  text-decoration: none; }
+  #anything a {
+    text-decoration: none;
+    padding: 10px;
+    margin-top: 20%; }
+  #anything a {
+    margin-top: 20px; }
