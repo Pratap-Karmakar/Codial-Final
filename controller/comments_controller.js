@@ -18,12 +18,13 @@ module.exports.create = async function (req, res) {
             // whenever we update something we need to call save, to save the comment in to the database
             post.save();
 
-            res.redirect('/');
+            req.flash('success', 'Post published!');
+            return res.redirect('back');
         }
     }
     catch(err){
-        console.log('Error', err);
-        return;
+        req.flash('Error', 'err');
+        return res.redirect('back');
     }
 }
 
@@ -38,15 +39,18 @@ module.exports.destroy = async function (req, res) {
 
             // as we delete a comment from a post so we have to update that post as well
             let post = Post.findByIdAndUpdate(postId, { $pull: { comments: req.params.id } }); 
+
+            req.flash('success', 'Comment deleted!');
             return res.redirect('back');
     
         }
         else{
+            req.flash('error','err');
             return res.redirect('back');
         }
     }
     catch(err){
-        console.log('Error',err);
+        req.flash('Error','err');
         return;
     }
 }

@@ -20,19 +20,20 @@ const User = require('../models/user');
 
 // authentication using passport
 passport.use(new LocalStrategy({
-    usernameField: 'email'
+    usernameField: 'email',
+    passReqToCallback: true
 },
     // done is the call back function
-    function (email, password, done) {
+    function (req,email, password, done) {
         // find a user and establish the identity
         // as we use the User.findOne that's why we have to import the user
         User.findOne({ email: email }, function (err, user) {
             if (err) {
-                console.log("Error in finding user in passport");
+                req.flash('error',err);
                 return done(err);
             }
             if (!user || user.password != password) {
-                console.log("Invaild User_name / Password ");
+                req.flash('error', 'Invalid Username/password');
                 // there is no errror but the user is not found basically the authentication is not done, so we pust err as null and as the authentication is not done thst's why the authentication is false.
                 return done(null, false);
             }
