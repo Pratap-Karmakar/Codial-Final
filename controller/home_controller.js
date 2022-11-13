@@ -45,3 +45,9 @@ module.exports.home = async function (req, res) {
         return;
     }
 }
+
+// using then
+// Post.find({}).populate('comment').then();
+
+// let posts= Post.find({}).populate('comment').exec();
+// posts.then()

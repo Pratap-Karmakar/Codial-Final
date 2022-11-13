@@ -102,4 +102,3 @@ passport.setAuthenticatedUser = function (req, res, next) {
 
 // now we need to export this page
 module.exports = passport;
-

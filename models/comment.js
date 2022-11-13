@@ -28,4 +28,3 @@ const Comment = mongoose.model('Comment', commentSchema);
 
 //export this page
 module.exports = Comment;
-
