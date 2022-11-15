@@ -28,12 +28,25 @@ const userSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true
+    },
+    avatar:{
+        type: String
     }
-}, {
-
+}, 
+{
     // to keep updated the details of the users which is regulated by the mongodb which is our data base
     timestamps: true
 });
+
+let storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, path.join(__dirname,'..',AVATAR_PATH));
+    },
+    filename: function (req, file, cb) {
+      const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
+      cb(null, file.fieldname + '-' + uniqueSuffix)
+    }
+  })
 
 
 
