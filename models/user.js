@@ -1,14 +1,12 @@
 // This is the Schema of the User
 
 const mongoose = require('mongoose');
-const multer = require('multer');
-
 
 
 // we have to import in this page as this page is user specific and we are suppose to upe a file which is user specific and have some specific settings as well.
-const multer=require('multer');
+const multer = require('multer');
 // as we will be setting the path where the file will be stored thst's why we have to import path.
-const path=require('path');
+const path = require('path');
 //  and we have to specify which path
 const AVATAR_PATH = path.join('/uploads/users/avatars');
 
@@ -29,24 +27,30 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    avatar:{
+    avatar: {
         type: String
     }
-}, 
-{
-    // to keep updated the details of the users which is regulated by the mongodb which is our data base
-    timestamps: true
-});
+},
+    {
+        // to keep updated the details of the users which is regulated by the mongodb which is our data base
+        timestamps: true
+    });
 
 let storage = multer.diskStorage({
     destination: function (req, file, cb) {
-      cb(null, path.join(__dirname,'..',AVATAR_PATH));
+        cb(null, path.join(__dirname, '..', AVATAR_PATH));
     },
     filename: function (req, file, cb) {
-      const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
-      cb(null, file.fieldname + '-' + uniqueSuffix)
+        cb(null, file.fieldname + '-' + Date.now());
     }
-  })
+});
+
+
+
+// static function
+// single('avatar) means only one file will be uploaded for the field name Avatar, not multiple
+userSchema.statics.uploadedAvatar = multer({ storage: storage }).single('avatar');
+userSchema.statics.avatarPath = AVATAR_PATH;
 
 
 
