@@ -1,6 +1,19 @@
 // This is the Schema of the User
 
 const mongoose = require('mongoose');
+const multer = require('multer');
+
+
+
+// we have to import in this page as this page is user specific and we are suppose to upe a file which is user specific and have some specific settings as well.
+const multer=require('multer');
+// as we will be setting the path where the file will be stored thst's why we have to import path.
+const path=require('path');
+//  and we have to specify which path
+const AVATAR_PATH = path.join('/uploads/users/avatars');
+
+
+
 const userSchema = new mongoose.Schema({
     // ********************* here String's  'S'   should be in capital, otherwise the cose will not work **************************
     email: {
