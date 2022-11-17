@@ -8,10 +8,10 @@
 
 // first we import passport
 const passport = require('passport');
-const { serializeUser } = require('passport');
+// const { serializeUser } = require('passport');
 
 // then we need to require the passport-local and speceficily the Strategy is the property we need to require from it
-const LocalStrategy = require('passport-local').Strategy
+const LocalStrategy = require('passport-local').Strategy;
 
 
 // now we need to import user

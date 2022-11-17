@@ -1,13 +1,26 @@
 // to import the user's schema/details
-// const { exists } = require('../models/user');
+
 const User = require('../models/user');
 
 
 
 // so now we have to export this page and the function
-module.exports.profile = function (req, res) {
+module.exports.profile_id = function (req, res) {
     // to locate the user for to show in the home page
     User.findById(req.params.id, function(err,user){
+        return res.render('user_profile', {
+            title: 'User Profile',
+            profile_user:user
+        })
+    })
+}
+// module.exports.profile=function(req,res){
+    
+// }
+
+module.exports.profile=function(req,res){
+    console.log(req.user);
+    User.findById(req.user.id, function(err,user){
         return res.render('user_profile', {
             title: 'User Profile',
             profile_user:user
@@ -120,4 +133,7 @@ module.exports.destroySession=function(req,res){
         return res.redirect('/');
     })
 }
+
+
+
 
