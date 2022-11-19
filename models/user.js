@@ -3,7 +3,7 @@
 const mongoose = require('mongoose');
 
 
-// we have to import in this page as this page is user specific and we are suppose to upe a file which is user specific and have some specific settings as well.
+// we have to import in this page as this page is user specific and we are suppose to use a file which is user specific and have some specific settings as well.
 const multer = require('multer');
 // as we will be setting the path where the file will be stored thst's why we have to import path.
 const path = require('path');
@@ -36,11 +36,16 @@ const userSchema = new mongoose.Schema({
         timestamps: true
     });
 
+
+
+// 
+
 let storage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, path.join(__dirname, '..', AVATAR_PATH));
     },
     filename: function (req, file, cb) {
+    // every file that i upload on this field for every user that will be stored as "AVATAR - Date.now()" 
         cb(null, file.fieldname + '-' + Date.now());
     }
 });
@@ -48,7 +53,7 @@ let storage = multer.diskStorage({
 
 
 // static function
-// single('avatar) means only one file will be uploaded for the field name Avatar, not multiple
+// .single('avatar') means only one file will be uploaded for the field name Avatar, not multiple
 userSchema.statics.uploadedAvatar = multer({ storage: storage }).single('avatar');
 userSchema.statics.avatarPath = AVATAR_PATH;
 
@@ -62,28 +67,3 @@ const User = mongoose.model('User', userSchema);
 module.exports = User;
 
 
-
-// const mongoose = require('mongoose');
-
-// const userSchema = new mongoose.Schema({
-//     email: {
-//         type: String,
-//         required: true,
-//         unique: true
-//     },
-//     password: {
-//         type: String,
-//         required: true
-//     },
-//     name: {
-//         type: String,
-//         required: true
-//     }
-// }, {
-//     timestamps: true
-// });
-
-
-// const User = mongoose.model('User', userSchema);
-
-// module.exports = User;

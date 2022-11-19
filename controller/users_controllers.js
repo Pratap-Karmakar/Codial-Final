@@ -7,52 +7,59 @@ const User = require('../models/user');
 // so now we have to export this page and the function
 module.exports.profile_id = function (req, res) {
     // to locate the user for to show in the home page
-    User.findById(req.params.id, function(err,user){
+    User.findById(req.params.id, function (err, user) {
         return res.render('user_profile', {
             title: 'User Profile',
-            profile_user:user
+            profile_user: user
         })
     })
 }
 // module.exports.profile=function(req,res){
-    
+
 // }
 
-module.exports.profile=function(req,res){
+module.exports.profile = function (req, res) {
     console.log(req.user);
-    User.findById(req.user.id, function(err,user){
+    User.findById(req.user.id, function (err, user) {
         return res.render('user_profile', {
             title: 'User Profile',
-            profile_user:user
+            profile_user: user
         })
     })
 }
 
 
-module.exports.update = async function(req,res){
-    if(req.user.id == req.params.id){
+module.exports.update = async function (req, res) {
+    if (req.user.id == req.params.id) {
         // User.findByIdAndUpdate(req.params.id, req.body, 
         // function(err, user){
         //     return res.redirect('back');
         // });
-        try{
-            let user= await User.findById(req.params.id);
-            User.uploadedAvatar(req,res,function(err){
-                if(err){
+        try {
+            let user = await User.findById(req.params.id);
+            User.uploadedAvatar(req, res, function (err) {
+                if (err) {
                     console.log('***Multer Error :', err);
                 }
-                else{
-                    console.log(req.file);
+                else {
+                    user.name = req.body.name;
+                    user.email = req.body.email;
                 }
+                if (req.file) {
+                    // this is saving path of the uploaded file into the avatar field in the user
+                    user.avatar = User.avatarPath + '/' + req.file.filename;
+                }
+                user.save();
+                return res.redirect('back');
             });
         }
-        catch(err){
-            req.flash('error',err);
+        catch (err) {
+            req.flash('error', err);
             return res.redirect('back');
         }
     }
-    else{
-        req.flash('error','Unauthorized!');
+    else {
+        req.flash('error', 'Unauthorized!');
         return res.status(401).send('Unauthorized');
     }
 }
@@ -65,8 +72,8 @@ module.exports.update = async function(req,res){
 // to render the sign_up page
 module.exports.signUp = function (req, res) {
     // if(req.isAuthenticated() this will take the user to the profile page if he sign in even if he wants to go to the sign in or sign up page.
-    if(req.isAuthenticated()){
-     return res.redirect('/users/profile');
+    if (req.isAuthenticated()) {
+        return res.redirect('/users/profile');
     }
     return res.render('user_sign_up', {
         title: 'Sign Up'
@@ -105,7 +112,7 @@ module.exports.create = function (req, res) {
 // to render the sign_in page
 module.exports.signIn = function (req, res) {
     // if(req.isAuthenticated() this will take the user to the profile page if he sign in even if he wants to go to the sign in or sign up page.
-    if(req.isAuthenticated()){
+    if (req.isAuthenticated()) {
         return res.redirect('/users/profile');
     }
     return res.render('user_sign_in', {
@@ -114,24 +121,24 @@ module.exports.signIn = function (req, res) {
 }
 // to get the sign_in data
 module.exports.createSession = function (req, res) {
-    req.flash('success','Logged in Successfully');
+    req.flash('success', 'Logged in Successfully');
     // the user is signed in we just need to redirect
     return res.redirect('/');
 }
 
 
 // sign-out function
-module.exports.destroySession=function(req,res){
-    req.flash('success','You have Logged out!');
+module.exports.destroySession = function (req, res) {
+    req.flash('success', 'You have Logged out!');
     //to log out
     req.logout
-    (function(err){
-        if(err){
+        (function (err) {
+            if (err) {
+                return res.redirect('/');
+            }
+            req.flash('success', 'You have Logged out!');
             return res.redirect('/');
-        }
-        req.flash('success','You have Logged out!');
-        return res.redirect('/');
-    })
+        })
 }
 
 
