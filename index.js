@@ -62,6 +62,12 @@ app.use(cookieParser());
 app.use(express.static('./assets'));
 
 
+// here we are joining the the path for that the picture uploaded by the user will get the right path to be shown in the profile.
+// make the uploades path available to the browser.
+// app.use('/uploads', express.static(__dirname + '/upload'));
+
+app.use('/uploads', express.static(__dirname + '/uploads'));
+
 
 
 // now we need to tell the app to use express layouts

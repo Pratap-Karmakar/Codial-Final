@@ -42,13 +42,12 @@ const userSchema = new mongoose.Schema({
 
 let storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, path.join(__dirname, '..', AVATAR_PATH));
+      cb(null, path.join(__dirname, '..', AVATAR_PATH));
     },
     filename: function (req, file, cb) {
-    // every file that i upload on this field for every user that will be stored as "AVATAR - Date.now()" 
-        cb(null, file.fieldname + '-' + Date.now());
+      cb(null, file.fieldname + '-' + Date.now());
     }
-});
+  });
 
 
 
