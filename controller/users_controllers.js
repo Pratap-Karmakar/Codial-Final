@@ -2,8 +2,10 @@
 
 const User = require('../models/user');
 
-// const fs=require('fs');
-// const path=require('path');
+
+//for deleting we need the file system module and the path because we will be deleting form a path
+const fs=require('fs');
+const path=require('path');
 
 
 
@@ -46,6 +48,14 @@ module.exports.update = async function(req, res){
                 user.email = req.body.email;
 
                 if (req.file){
+                    // here we check if the user already have any avatar or not if there is a avatar the remove it and upload a new avatar
+                    
+                    // if(user.avatar){
+                    //     // delete function is unlinkSync
+                    //     fs.unlinkSync(path.join(__dirname, '..', user.avatar));
+                    // }
+
+
                     // this is saving the path of the uploaded file into the avatar field in the user
                     user.avatar = User.avatarPath + '/' + req.file.filename;
                 }
