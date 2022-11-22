@@ -29,6 +29,8 @@ router.use('/posts', require('./posts'));
 // in the browser if any request come with /comments the just require my neighbour which is
 router.use('/comments', require('./comments'));
 
+// to get the api folder of route
+router.use('/api',require('./api'));
 
 
 

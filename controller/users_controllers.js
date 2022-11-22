@@ -2,6 +2,7 @@
 
 const User = require('../models/user');
 
+const multer=require('multer');
 
 //for deleting we need the file system module and the path because we will be deleting form a path
 const fs=require('fs');
@@ -57,7 +58,7 @@ module.exports.update = async function(req, res){
 
 
                     // this is saving the path of the uploaded file into the avatar field in the user
-                    user.avatar = User.avatarPath + '/' + req.file.filename;
+                    user.avatar = User.avatarPath + '/' + req.file.filename;                    
                 }
                 user.save();
                 return res.redirect('back');
