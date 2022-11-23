@@ -17,6 +17,7 @@ const session=require('express-session');
 const passport=require('passport');
 // we need to require passport-session library
 const passportLocal=require('./config/passport-local-strategy');
+const passportJWT=require('./config/passport-jwt-strategy');
 
 
 // connect-mongo, in this case one argument has to be passed here which is session
