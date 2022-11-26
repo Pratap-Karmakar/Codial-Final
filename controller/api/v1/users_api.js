@@ -21,7 +21,7 @@ module.exports.createSession = async function (req, res) {
                 message: "Sign in successful, here is your token, please keep it safe!",
                 data:{
                     // codial is the key which we've seted in the passport-jwt-strategy
-                    token: jwt.sign(user.toJSON(), 'codial', {expiresIn: '10000'})
+                    token: jwt.sign(user.toJSON(), 'codial', {expiresIn: '100000'})
                 }
             })
         }
@@ -33,3 +33,6 @@ module.exports.createSession = async function (req, res) {
         });
     }
 }
+
+
+

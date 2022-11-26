@@ -7,7 +7,7 @@ const User = require('../models/user');
 
 
 let opts = {
-    jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken,
+    jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
     // codial is the secreet key by which the user is able to decrepts his tokenn
     secretOrKey: 'codial'
 }

@@ -40,6 +40,9 @@ router.get('/sign-up', usersController.signUp);
 // to create a new user
 router.post('/create', usersController.create);
 
+
+
+
 // use passport as a middleware to authenticate
 router.post('/create-session',
 // middleware 
@@ -48,9 +51,19 @@ passport.authenticate('local',{failureRedirect: '/users/sign-in'}),
 // so if the authenticate is done then the createSession function is called
 usersController.createSession);
 // for the sign-outt function
+
+
+
+
+
+
 router.get('/sign-out', usersController.destroySession);
 router.get('/profile',usersController.profile);
 
+
+
+router.get('/auth/google', passport.authenticate('google',{scope: ['profile', 'email']}));
+router.get('/auth/google/callback', passport.authenticate('google', {failureRedirect: '/users/sign-in'}), usersController.createSession);
 
 
 // this page is exported and accessable by the main index.js of routes....and the route's index.js is exported further which is accessable by the main index.js
